@@ -10,8 +10,12 @@ public class PlayerMovement : MonoBehaviour
     
     private Rigidbody2D rb;
     private Vector3 movement;
+  
     [SerializeField] private float speed = 2f;
-
+    [SerializeField] private int nextLevel=10;
+    public int puntaje =0;
+    private int  big=1;
+    
     private Animator animator;
 
     private void Awake()
@@ -34,5 +38,20 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
         rb.velocity = movement * speed;
+    }
+
+    public void levelrign(int level)
+    {
+        puntaje += level;
+        if (puntaje>= nextLevel)
+        {
+
+            Debug.Log("se volvio mas grande el slime, ahora tiene mas hambre ");
+            transform.localScale=new Vector3(1+(big*0.3f),1+ (big * 0.3f), 1+ (big * 0.3f));
+            big++;
+            nextLevel = puntaje * 2;
+            GlobalContador.Instance.levelPlayer++;
+            GlobalContador.Instance.levelProjectile++;
+        }
     }
 }

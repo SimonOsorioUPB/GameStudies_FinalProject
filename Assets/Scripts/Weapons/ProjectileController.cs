@@ -8,10 +8,12 @@ public class ProjectileController : MonoBehaviour
 {
     [SerializeField] private float timeToDestroy = 1f;
     private float destroyTimer;
+    public float perforate=1;
 
     private void Start()
     {
         destroyTimer = timeToDestroy;
+        perforate += GlobalContador.Instance.levelProjectile;
     }
 
     private void Update()
@@ -24,7 +26,13 @@ public class ProjectileController : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Enemy"))
         {
-            Destroy(col.gameObject);
+            col.gameObject.GetComponent<BasicEnemy>().Destroide() ;
+            perforate--;
+            if (perforate<=0)
+            {
+                Destroy(gameObject);
+            }
+           
         }
     }
 }
