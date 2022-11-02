@@ -7,12 +7,12 @@ using Random = UnityEngine.Random;
 
 public class GenerateEnemies : MonoBehaviour
 {
-    public GameObject Enemy;
+    public GameObject [] Enemy;
     public GameObject Player;
     [SerializeField] private float spawnOffset = 40;
     [SerializeField] private float spawnDelay = 5f;
     private float spawnTimer;
-
+    private int EnemïPosition;
     private void Start()
     {
         spawnTimer = spawnDelay;
@@ -22,7 +22,9 @@ public class GenerateEnemies : MonoBehaviour
     {
         if (spawnTimer <= 0)
         {
-            Instantiate(Enemy, Player.transform.position + new  Vector3(Random.Range(-spawnOffset, spawnOffset), Random.Range(-spawnOffset, spawnOffset)), transform.rotation);
+            EnemïPosition=Random.Range(0, 2);
+
+            Instantiate(Enemy[EnemïPosition], Player.transform.position + new  Vector3(Random.Range(-spawnOffset, spawnOffset), Random.Range(-spawnOffset, spawnOffset)), transform.rotation);
             spawnTimer = spawnDelay;
         }
         else

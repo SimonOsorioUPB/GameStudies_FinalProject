@@ -100,6 +100,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 4
   destroy: 0
+  CollisionColor: {r: 0, g: 0, b: 1, a: 1}
+  CollisionColor2: {r: 0, g: 0, b: 1, a: 1}
+  CollisionColorTank: {r: 0, g: 0, b: 0, a: 0}
+  liveTank: 1
+  speed: 0
+  tank: 0
 --- !u!58 &9102120831039457733
 CircleCollider2D:
   m_ObjectHideFlags: 0
