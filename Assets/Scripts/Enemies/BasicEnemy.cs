@@ -8,9 +8,8 @@ public class BasicEnemy : MonoBehaviour
     [SerializeField] private float Speed = 1;
     public bool destroy = false;
     private SpriteRenderer spriteRenderer;
-    [SerializeField]private Color CollisionColor = Color.blue;
-    [SerializeField] private Color CollisionColor2 = Color.blue, CollisionColorTank= Color.blue;
-    [SerializeField] private int liveTank=1;
+    [SerializeField] private GameObject slimeDead;
+    [SerializeField] public int liveTank=1;
     [SerializeField]bool speed = false, tank=false;
     void Start()
     {
@@ -31,21 +30,8 @@ public class BasicEnemy : MonoBehaviour
    
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("Player") && destroy)
-        {
-            if (speed) col.gameObject.GetComponent<PlayerMovement>().LevelSpeed(1);
-            else if (tank) 
-            { 
-                GlobalContador.Instance.live++;
-                GlobalContador.Instance.Chagelive();
-                Debug.Log("tienes mas vida");
-                
-            }   
-            else col.gameObject.GetComponent<PlayerMovement>().levelrign(1);
-            Destroy(gameObject);
-
-        }
-        else if(col.gameObject.CompareTag("Player") && !destroy)
+       
+        if(col.gameObject.CompareTag("Player") && !destroy)
         {
 
             GlobalContador.Instance.live --;
@@ -64,13 +50,12 @@ public class BasicEnemy : MonoBehaviour
         liveTank--;
         if (liveTank == 0) {    
            
-            transform.localScale = new Vector2(0.5f, 0.5f);
+         
              destroy = true;
-            if (speed) spriteRenderer.color = CollisionColor2;
-            else if (tank) { transform.localScale = new Vector2(1f, 1f); spriteRenderer.color = CollisionColorTank; }
-            else spriteRenderer.color = CollisionColor;
+             GameObject projectile = Instantiate(slimeDead, transform.position, Quaternion.identity);
+         
             GlobalContador.Instance.PassOleada();
-            Destroy(gameObject,6);
+            Destroy(gameObject);
 
             }
         

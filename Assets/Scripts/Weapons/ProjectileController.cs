@@ -34,5 +34,14 @@ public class ProjectileController : MonoBehaviour
             }
            
         }
+        else if (col.gameObject.CompareTag("invoke"))
+        {
+            col.gameObject.GetComponent<InvokeEnemy>().Destroide();
+            perforate--;
+            if (perforate <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }

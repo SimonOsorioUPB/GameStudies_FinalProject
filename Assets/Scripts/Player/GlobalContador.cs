@@ -12,6 +12,9 @@ public class GlobalContador : MonoBehaviour
     public int live=3;
     public int levelSpeed =0;
     public int killcount = 0;
+    public int levelInvoke = 0,RequieremLevel=1,nextLevelInvoke=0;
+    public float TimeInvoke=0;
+    public GameObject Invoke;
     private PlayerMovement Jugador;
     public TMP_Text Oleada_text;
     public TMP_Text KillText;
@@ -71,6 +74,30 @@ public class GlobalContador : MonoBehaviour
             Debug.Log("pasaste de oleada");
         }
       
+    }
+    public void UpdateInvoke()
+    {
+        if (RequieremLevel==1)
+        {
+            RequieremLevel*=2;
+            levelInvoke = 1;
+            Invoke.SetActive(true);
+        }
+        else if(levelInvoke<4)
+        {
+            nextLevelInvoke++;
+            if (RequieremLevel== nextLevelInvoke)
+            {
+                RequieremLevel *= 2;
+                levelInvoke++;
+                if (levelInvoke > 4)
+                {
+                    TimeInvoke -= 0.5f;
+                }
+                nextLevelInvoke =0;
+
+            }
+        }
     }
 
 

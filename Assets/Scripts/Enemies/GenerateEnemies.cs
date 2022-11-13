@@ -41,6 +41,7 @@ public class GenerateEnemies : MonoBehaviour
                     break;
                 case 5:
                     Debug.Log("jefe  ");
+                    Instantiate(Enemy[3], Player.transform.position + new Vector3(Random.Range(-spawnOffset, spawnOffset), Random.Range(-spawnOffset, spawnOffset)), transform.rotation);
                     break;
                 default:
                     Debug.Log("otro  ");

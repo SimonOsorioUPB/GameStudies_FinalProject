@@ -100,9 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 4
   destroy: 0
-  CollisionColor: {r: 0, g: 0, b: 1, a: 1}
-  CollisionColor2: {r: 0, g: 0, b: 1, a: 1}
-  CollisionColorTank: {r: 0.254717, g: 0.18118548, b: 0.18118548, a: 1}
+  slimeDead: {fileID: 5160552424926123626, guid: 0ff433b83177fa945a7bd89ca3cf0279, type: 3}
   liveTank: 10
   speed: 0
   tank: 1
