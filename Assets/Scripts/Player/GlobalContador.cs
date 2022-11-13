@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEditor.UI;
+using UnityEngine.UI;
 using TMPro;
 public class GlobalContador : MonoBehaviour
 {
     public int levelProjectile=0;
     public int levelPlayer=0;
-    public int live=3;
+    public int live=5;
+    public int TotalLive=5;
     public int levelSpeed =0;
     public int killcount = 0;
     public int levelInvoke = 0,RequieremLevel=1,nextLevelInvoke=0;
     public float TimeInvoke=0;
-    public GameObject Invoke;
+    public GameObject Invoke,point,sliceposition;
     private PlayerMovement Jugador;
     public TMP_Text Oleada_text;
     public TMP_Text KillText;
@@ -22,16 +23,23 @@ public class GlobalContador : MonoBehaviour
     public TMP_Text Size_text;
     public TMP_Text Projectile_text;
     public int Oleada;
+    public Slider mainSlider;
     public int enemiDeadForOleada=0;
     [SerializeField] private int[] EnemyNeed;
     public static GlobalContador Instance { get; set; }
 
     void Awake()
     {
-        Live_text.text = ""+3;
+        Live_text.text = ""+5;
         Size_text.text = "" + 0;
         Jugador = gameObject.GetComponentInChildren<PlayerMovement>();
         if (Instance == null) { Instance = this; }
+        mainSlider.maxValue = TotalLive;
+        mainSlider.value = live;
+    }
+    public void Update()
+    {
+        sliceposition.transform.position = point.transform.position;
     }
 
     public void Dead()
@@ -56,6 +64,13 @@ public class GlobalContador : MonoBehaviour
     }
     public void Chagelive()
     {
+        if (TotalLive<= live)
+        {
+            TotalLive++;
+            mainSlider.maxValue = TotalLive;
+            
+        }
+        mainSlider.value = live;
         Size_text.text = "" + levelPlayer;
         Live_text.text = "" + live;
         Projectile_text.text = "" + levelProjectile;

@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class InvokeEnemy : MonoBehaviour
 {
+    enum Tipo
+    {
+        mago, king
+    }
+    [SerializeField]private Tipo tipo;
     private GameObject player;
     [SerializeField] private float Speed = 1, liveTank=2;
     public bool destroy = false;
     private SpriteRenderer spriteRenderer;
-    private float diferencia;
+    private float diferencia,range;
     [SerializeField] private GameObject projectilePrefab, Item;
     [SerializeField] private Transform[] positions;
     private bool invoke;
@@ -20,6 +25,10 @@ public class InvokeEnemy : MonoBehaviour
         invokeDelay = 10;
         invokeTime = 4;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        if (tipo==Tipo.king)
+        {
+            range = 20;
+        }
     }
 
     // Update is called once per frame
@@ -27,9 +36,10 @@ public class InvokeEnemy : MonoBehaviour
     {
         if (!destroy)
         {
+            
             diferencia = Vector3.Distance(transform.position, player.transform.position);
             invokeTime -= Time.deltaTime;
-            if (diferencia>=10 || invoke)
+            if (diferencia>=range || invoke)
             {
                 Debug.Log(diferencia);
                 transform.position = Vector2.MoveTowards(transform.position, player.transform.position, Speed * Time.deltaTime);
