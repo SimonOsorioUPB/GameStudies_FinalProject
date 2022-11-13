@@ -22,9 +22,35 @@ public class GenerateEnemies : MonoBehaviour
     {
         if (spawnTimer <= 0)
         {
-            EnemïPosition=Random.Range(0, 2);
+            switch (GlobalContador.Instance.Oleada+1)
+            {
+                case 1:
+                   Debug.Log("los enemigos basico ");
+                    Instantiate(Enemy[0], Player.transform.position + new Vector3(Random.Range(-spawnOffset, spawnOffset), Random.Range(-spawnOffset, spawnOffset)), transform.rotation);
+                    break;
+                case 2:
+                    EnemïPosition = Random.Range(0,2);
+                    Instantiate(Enemy[EnemïPosition], Player.transform.position + new Vector3(Random.Range(-spawnOffset, spawnOffset), Random.Range(-spawnOffset, spawnOffset)), transform.rotation);
+                    Debug.Log("velocitos y normales  ");
+                    break;
+                case 3:
+                    EnemïPosition = Random.Range(0, 3);
+                    Instantiate(Enemy[EnemïPosition], Player.transform.position + new Vector3(Random.Range(-spawnOffset, spawnOffset), Random.Range(-spawnOffset, spawnOffset)), transform.rotation);
+                    Debug.Log("velocitos y normales  ");
+                    Debug.Log("vida y los demas   ");
+                    break;
+                case 5:
+                    Debug.Log("jefe  ");
+                    break;
+                default:
+                    Debug.Log("otro  ");
+                    EnemïPosition = Random.Range(0, 3);
+                    Instantiate(Enemy[EnemïPosition], Player.transform.position + new Vector3(Random.Range(-spawnOffset, spawnOffset), Random.Range(-spawnOffset, spawnOffset)), transform.rotation);
+                    Debug.Log("velocitos y normales  ");
+                    Debug.Log("vida y los demas   ");
+                    break;
 
-            Instantiate(Enemy[EnemïPosition], Player.transform.position + new  Vector3(Random.Range(-spawnOffset, spawnOffset), Random.Range(-spawnOffset, spawnOffset)), transform.rotation);
+            }
             spawnTimer = spawnDelay;
         }
         else

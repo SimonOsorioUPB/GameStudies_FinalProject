@@ -34,7 +34,13 @@ public class BasicEnemy : MonoBehaviour
         if (col.gameObject.CompareTag("Player") && destroy)
         {
             if (speed) col.gameObject.GetComponent<PlayerMovement>().LevelSpeed(1);
-            else if (tank) { GlobalContador.Instance.live++; Debug.Log("tienes mas vida"); }
+            else if (tank) 
+            { 
+                GlobalContador.Instance.live++;
+                GlobalContador.Instance.Chagelive();
+                Debug.Log("tienes mas vida");
+                
+            }   
             else col.gameObject.GetComponent<PlayerMovement>().levelrign(1);
             Destroy(gameObject);
 
@@ -43,10 +49,13 @@ public class BasicEnemy : MonoBehaviour
         {
 
             GlobalContador.Instance.live --;
+            GlobalContador.Instance.Chagelive();
             GlobalContador.Instance.Dead();
             if (speed)
+            { 
+                GlobalContador.Instance.PassOleada();
                 Destroy(gameObject);
-
+            }
         }
     }
 
@@ -56,11 +65,11 @@ public class BasicEnemy : MonoBehaviour
         if (liveTank == 0) {    
            
             transform.localScale = new Vector2(0.5f, 0.5f);
-         destroy = true;
+             destroy = true;
             if (speed) spriteRenderer.color = CollisionColor2;
             else if (tank) { transform.localScale = new Vector2(1f, 1f); spriteRenderer.color = CollisionColorTank; }
             else spriteRenderer.color = CollisionColor;
-            
+            GlobalContador.Instance.PassOleada();
             Destroy(gameObject,6);
 
             }

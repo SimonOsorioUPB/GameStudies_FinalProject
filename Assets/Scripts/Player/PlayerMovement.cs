@@ -49,11 +49,14 @@ public class PlayerMovement : MonoBehaviour
         {
 
             Debug.Log("se volvio mas grande el slime, ahora tiene mas hambre ");
-            transform.localScale=new Vector3(1+(big*0.3f),1+ (big * 0.3f), 1+ (big * 0.3f));
+            transform.localScale = new Vector3(transform.localScale.x + 0.3f, transform.localScale.y + 0.3f, transform.localScale.z+ 0.3f);
             big++;
+            GlobalContador.Instance.live+=2;
+           
             nextLevel = puntaje * 2;
             GlobalContador.Instance.levelPlayer++;
-            GlobalContador.Instance.levelProjectile++;
+            GlobalContador.Instance.levelProjectile++; 
+            GlobalContador.Instance.Chagelive();
         }
     }
     internal void LevelSpeed(int level)
@@ -73,7 +76,8 @@ public class PlayerMovement : MonoBehaviour
     internal void levenDown()
     { 
         big--;
-        transform.localScale = new Vector3(1 - (big * 0.3f), 1 -+ (big * 0.3f), 1 - (big * 0.3f));
+        transform.localScale = new Vector3(transform.localScale.x-0.3f, transform.localScale.y - 0.3f, transform.localScale.z - 0.3f);
+
 
        
     }
