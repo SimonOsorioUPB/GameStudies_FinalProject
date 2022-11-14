@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InvokeEnemy : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class InvokeEnemy : MonoBehaviour
     {
         mago, king
     }
+    public Slider mainSlider;
     [SerializeField]private Tipo tipo;
     private GameObject player;
     [SerializeField] private float Speed = 1, liveTank=2;
@@ -27,8 +29,15 @@ public class InvokeEnemy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (tipo==Tipo.king)
         {
-            range = 20;
+            range = 25;
+
         }
+        else
+        {
+            range = 8;
+        }
+        mainSlider.maxValue = liveTank;
+        mainSlider.value = liveTank;
     }
 
     // Update is called once per frame
@@ -36,12 +45,12 @@ public class InvokeEnemy : MonoBehaviour
     {
         if (!destroy)
         {
-            
+            mainSlider.value = liveTank;
             diferencia = Vector3.Distance(transform.position, player.transform.position);
             invokeTime -= Time.deltaTime;
             if (diferencia>=range || invoke)
             {
-                Debug.Log(diferencia);
+               
                 transform.position = Vector2.MoveTowards(transform.position, player.transform.position, Speed * Time.deltaTime);
 
             }
@@ -53,8 +62,7 @@ public class InvokeEnemy : MonoBehaviour
                 invokeTime = invokeDelay;
             }
         
-           
-            Debug.Log(diferencia);
+        
 
         }
             
@@ -71,7 +79,12 @@ public class InvokeEnemy : MonoBehaviour
         liveTank--;
         if (liveTank == 0)
         {
+            if (tipo == Tipo.king)
+            {
+                GlobalContador.Instance.DeadKind=true;
 
+            }
+            GlobalContador.Instance.PassOleada();
             GameObject projectile = Instantiate(Item, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }

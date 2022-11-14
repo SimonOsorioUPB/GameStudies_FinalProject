@@ -1,18 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class DropSlime : MonoBehaviour
 {
     enum Tipo
     {
-        Normal,spedy,tank
+        Normal,spedy,tank,kind
     }
     [SerializeField]private Tipo identificator = Tipo.Normal;
     // Start is called before the first frame update
     void Start()
     {
+        if (identificator == Tipo.kind)
+        {
+           
+        }
+        else
+        {
         Destroy(gameObject, 6);
+        }
+
     }
 
 
@@ -31,10 +39,16 @@ public class DropSlime : MonoBehaviour
             }
             if (identificator == Tipo.tank)
             {
-                GlobalContador.Instance.live++;
+                GlobalContador.Instance.live+=2;
                 GlobalContador.Instance.Chagelive();
                 Debug.Log("tienes mas vida");
 
+            }
+            if (identificator == Tipo.kind)
+            {
+                Debug.Log("se acabo");
+
+                SceneManager.LoadScene("End");
             }
 
             Destroy(gameObject);

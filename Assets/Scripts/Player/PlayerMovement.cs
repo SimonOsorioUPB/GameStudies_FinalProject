@@ -12,11 +12,11 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 movement;
   
     [SerializeField] private float speed = 2f;
-    [SerializeField] private int nextLevel=10;
+    [SerializeField] private int nextLevel=10,nextLevelSpeed=8;
     public int puntaje =0;
     public int Speddpoints= 0;
     public int LevelSpeedi=0;
-    [SerializeField]private int  big=1;
+
     
     private Animator animator;
 
@@ -50,10 +50,11 @@ public class PlayerMovement : MonoBehaviour
 
             Debug.Log("se volvio mas grande el slime, ahora tiene mas hambre ");
             transform.localScale = new Vector3(transform.localScale.x + 0.3f, transform.localScale.y + 0.3f, transform.localScale.z+ 0.3f);
-            big++;
+
             GlobalContador.Instance.live+=2;
            
-            nextLevel = puntaje * 2;
+            nextLevel = puntaje*2;
+            puntaje = 0;
             GlobalContador.Instance.levelPlayer++;
             GlobalContador.Instance.levelProjectile++; 
             GlobalContador.Instance.Chagelive();
@@ -62,20 +63,21 @@ public class PlayerMovement : MonoBehaviour
     internal void LevelSpeed(int level)
     {
         Speddpoints += level;
-        if (Speddpoints >= nextLevel)
+        if (Speddpoints >= nextLevelSpeed)
         {
 
             Debug.Log("se volvio mas rapido ");
             speed += 2;
             LevelSpeedi++;
-            nextLevel = Speddpoints * 2;
+            nextLevelSpeed = Speddpoints*2;
+            Speddpoints = 0;
             GlobalContador.Instance.levelSpeed++;
-           
+            GlobalContador.Instance.Chagelive();
         }
     }
     internal void levenDown()
     { 
-        big--;
+
         transform.localScale = new Vector3(transform.localScale.x-0.3f, transform.localScale.y - 0.3f, transform.localScale.z - 0.3f);
 
 

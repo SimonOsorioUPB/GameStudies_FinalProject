@@ -12,8 +12,8 @@ public class RadialShot : MonoBehaviour
 
     [SerializeField] private float moveSpeed = 5f, radius = 5f;
 
-    [SerializeField] private float attackDelay = 1f;
-    private float attackTimer;
+    [SerializeField] private float attackDelay = 2f;
+    [SerializeField] private float attackTimer;
 
     private void Start()
     {
@@ -25,8 +25,8 @@ public class RadialShot : MonoBehaviour
         attackTimer -= Time.deltaTime;
         if (attackTimer <= 0)
         {
-            SpawnProjectiles(projectileAmount);
-            attackTimer = attackDelay;
+            SpawnProjectiles(projectileAmount+GlobalContador.Instance.levelProjectile*2+ GlobalContador.Instance.levelSpeed*2);
+            attackTimer = attackDelay - (GlobalContador.Instance.levelSpeed * 0.5f);
         }
     }
 

@@ -22,10 +22,12 @@ public class GlobalContador : MonoBehaviour
     public TMP_Text Live_text;
     public TMP_Text Size_text;
     public TMP_Text Projectile_text;
+    public TMP_Text Speed_text;
     public int Oleada;
     public Slider mainSlider;
     public int enemiDeadForOleada=0;
     [SerializeField] private int[] EnemyNeed;
+    public bool DeadKind = false;
     public static GlobalContador Instance { get; set; }
 
     void Awake()
@@ -74,6 +76,7 @@ public class GlobalContador : MonoBehaviour
         Size_text.text = "" + levelPlayer;
         Live_text.text = "" + live;
         Projectile_text.text = "" + levelProjectile;
+        Speed_text.text = "" + levelSpeed;
     }
     public void PassOleada()
     { 
@@ -81,6 +84,10 @@ public class GlobalContador : MonoBehaviour
         enemiDeadForOleada++;
         killcount++;
         KillText.text = "" + killcount;
+        if (Oleada>=10)
+        {
+
+        }
         if (EnemyNeed[Oleada] <= enemiDeadForOleada)
         {
             enemiDeadForOleada = 0;
@@ -90,6 +97,7 @@ public class GlobalContador : MonoBehaviour
         }
       
     }
+    //se va mejorando la cantidad de slimes que invoca 
     public void UpdateInvoke()
     {
         if (RequieremLevel==1)

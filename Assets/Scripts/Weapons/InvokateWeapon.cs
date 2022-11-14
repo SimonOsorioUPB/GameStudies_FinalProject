@@ -21,7 +21,8 @@ public class InvokateWeapon : MonoBehaviour
         {
             invoke = true;
             InvokeSlime();
-            invokeTime = invokeDelay;
+            invokeTime = invokeDelay-(GlobalContador.Instance.levelSpeed*0.2f);
+
         }
 
     }

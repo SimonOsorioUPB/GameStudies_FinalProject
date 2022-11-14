@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class BasicEnemy : MonoBehaviour
 {
     private GameObject player;
+    public Slider mainSlider;
     [SerializeField] private float Speed = 1;
     public bool destroy = false;
     private SpriteRenderer spriteRenderer;
@@ -20,11 +21,14 @@ public class BasicEnemy : MonoBehaviour
             Speed = 8;
         }
         if (tank) { liveTank = 2; Speed = 2; }
+        mainSlider.maxValue = liveTank;
+        mainSlider.value = liveTank;
     }
     
     void Update()
     {
         if(!destroy)transform.position = Vector2.MoveTowards(transform.position, player.transform.position, Speed * Time.deltaTime);
+        mainSlider.value = liveTank;
     }
 
    
