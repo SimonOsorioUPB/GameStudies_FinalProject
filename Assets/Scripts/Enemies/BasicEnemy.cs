@@ -11,7 +11,7 @@ public class BasicEnemy : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject slimeDead;
     [SerializeField] public int liveTank=1;
-    [SerializeField]bool speed = false, tank=false;
+    [SerializeField] bool speed = false, tank=false;
     void Start()
     {
         player = PlayerMovement.Instance.gameObject;

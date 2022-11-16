@@ -10,7 +10,7 @@ public class Tutorial : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
         {
-            gameObject.SetActive(false);
+            tutorial.SetActive(false);
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))

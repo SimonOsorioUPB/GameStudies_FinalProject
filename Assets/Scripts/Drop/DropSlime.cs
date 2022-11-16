@@ -9,7 +9,6 @@ public class DropSlime : MonoBehaviour
         Normal,spedy,tank,kind
     }
     [SerializeField]private Tipo identificator = Tipo.Normal;
-    // Start is called before the first frame update
     void Start()
     {
         if (identificator == Tipo.kind)
