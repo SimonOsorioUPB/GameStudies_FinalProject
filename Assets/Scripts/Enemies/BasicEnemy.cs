@@ -20,7 +20,7 @@ public class BasicEnemy : MonoBehaviour
         {
             Speed = 8;
         }
-        if (tank) { liveTank = 2; Speed = 2; }
+        if (tank) { Speed = 2; }
         mainSlider.maxValue = liveTank;
         mainSlider.value = liveTank;
     }
