@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -51,7 +48,7 @@ public class GlobalContador : MonoBehaviour
             if (levelPlayer == 0)
             {
                 Debug.Log("se murio");
-                SceneManager.LoadScene("Gameloop");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
             else
             {

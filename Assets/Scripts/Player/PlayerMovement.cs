@@ -76,11 +76,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     internal void levenDown()
-    { 
-
+    {
         transform.localScale = new Vector3(transform.localScale.x-0.3f, transform.localScale.y - 0.3f, transform.localScale.z - 0.3f);
-
-
-       
     }
 }

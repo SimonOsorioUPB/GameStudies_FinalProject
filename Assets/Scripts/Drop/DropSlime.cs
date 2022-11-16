@@ -48,7 +48,7 @@ public class DropSlime : MonoBehaviour
             {
                 Debug.Log("se acabo");
 
-                SceneManager.LoadScene("End");
+                SceneManager.LoadScene(2);
             }
 
             Destroy(gameObject);
